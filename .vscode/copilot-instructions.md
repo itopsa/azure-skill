@@ -9,11 +9,11 @@ These instructions guide GitHub Copilot when assisting with Microsoft Azure arch
 * **CLI & IaC First**: Always provide solutions using the **Azure CLI (`az`)**, **Azure Developer CLI (`azd`)**, **Bicep**, or the **Azure DevOps CLI extension (`az devops`)** rather than manual portal clicks.
 * **Cross-Platform Compatibility**: Support PowerShell syntax on Windows (`.\.agents\skills\azure\scripts\azure_preflight.ps1`) and Bash on macOS/Linux.
 * **Skill Runbooks**: Reference the domain recipes in `.agents/skills/azure/references/`:
-  * [Core Services](file:///.agents/skills/azure/references/core-services.md) (Compute, Storage, DB, Network)
-  * [IaC & Deployments](file:///.agents/skills/azure/references/iac-deployments.md) (Bicep, ARM, `azd`)
-  * [Observability & Logs](file:///.agents/skills/azure/references/observability-logs.md) (KQL, Log Analytics, Metrics)
-  * [Security & IAM](file:///.agents/skills/azure/references/security-iam.md) (RBAC, Key Vault, Identities)
-  * [Azure DevOps](file:///.agents/skills/azure/references/azure-devops.md) (ADO Repos, PRs, Pipelines, Boards)
+  * [Core Services](../.agents/skills/azure/references/core-services.md) (Compute, Storage, DB, Network)
+  * [IaC & Deployments](../.agents/skills/azure/references/iac-deployments.md) (Bicep, ARM, `azd`)
+  * [Observability & Logs](../.agents/skills/azure/references/observability-logs.md) (KQL, Log Analytics, Metrics)
+  * [Security & IAM](../.agents/skills/azure/references/security-iam.md) (RBAC, Key Vault, Identities)
+  * [Azure DevOps](../.agents/skills/azure/references/azure-devops.md) (ADO Repos, PRs, Pipelines, Boards)
 
 ---
 

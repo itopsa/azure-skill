@@ -11,11 +11,11 @@ These instructions guide GitHub Copilot when assisting with Microsoft Azure arch
   * On **Windows**: Support PowerShell syntax and backslashes where appropriate (e.g. `.\.agents\skills\azure\scripts\azure_preflight.ps1`).
   * On **macOS/Linux**: Support POSIX/Bash syntax (`./.agents/skills/azure/scripts/azure_preflight.sh`).
 * **Skill Runbooks**: Reference the domain recipes in `.agents/skills/azure/references/`:
-  * [Core Services](file:///.agents/skills/azure/references/core-services.md) (Compute, Storage, DB, Network)
-  * [IaC & Deployments](file:///.agents/skills/azure/references/iac-deployments.md) (Bicep, ARM, `azd`)
-  * [Observability & Logs](file:///.agents/skills/azure/references/observability-logs.md) (KQL, Log Analytics, Metrics)
-  * [Security & IAM](file:///.agents/skills/azure/references/security-iam.md) (RBAC, Key Vault, Identities)
-  * [Azure DevOps](file:///.agents/skills/azure/references/azure-devops.md) (ADO Repos, PRs, Pipelines, Boards)
+  * [Core Services](../.agents/skills/azure/references/core-services.md) (Compute, Storage, DB, Network)
+  * [IaC & Deployments](../.agents/skills/azure/references/iac-deployments.md) (Bicep, ARM, `azd`)
+  * [Observability & Logs](../.agents/skills/azure/references/observability-logs.md) (KQL, Log Analytics, Metrics)
+  * [Security & IAM](../.agents/skills/azure/references/security-iam.md) (RBAC, Key Vault, Identities)
+  * [Azure DevOps](../.agents/skills/azure/references/azure-devops.md) (ADO Repos, PRs, Pipelines, Boards)
 
 ---
 
