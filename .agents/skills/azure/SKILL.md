@@ -1,12 +1,11 @@
----
 name: azure
 description: >-
-  Manage, provision, inspect, deploy, and troubleshoot Microsoft Azure cloud resources and Azure DevOps (ADO) using the Azure CLI (az), Azure Developer CLI (azd), Bicep, and Azure REST APIs without requiring an external MCP server. Activate this skill whenever interacting with Azure subscriptions, resource groups, App Services, Container Apps, AKS, Functions, Storage, Cosmos DB, Key Vault, Monitor/Logs, IAM/RBAC, or Azure DevOps pipelines/repos.
+  Manage, provision, inspect, deploy, and troubleshoot Microsoft Azure cloud resources and Azure DevOps (ADO) using the Azure CLI (az), Bicep, and Azure REST APIs without requiring an external MCP server. Activate this skill whenever interacting with Azure subscriptions, resource groups, App Services, Container Apps, AKS, Functions, Storage, Cosmos DB, Key Vault, Monitor/Logs, IAM/RBAC, or Azure DevOps pipelines/repos.
 ---
 
 # Azure Cloud Operations & Management Skill
 
-This skill provides direct, token-efficient, and deterministic management of Microsoft Azure infrastructure, workloads, and Azure DevOps (ADO) using native command-line tools (`az`, `azd`, `bicep`, `az devops`) across Windows, macOS, and Linux.
+This skill provides direct, token-efficient, and deterministic management of Microsoft Azure infrastructure, workloads, and Azure DevOps (ADO) using native command-line tools (`az`, `bicep`, `az devops`) across Windows, macOS, and Linux.
 
 ---
 
@@ -98,7 +97,7 @@ For specific CLI commands, syntax recipes, and workflows by service category, co
 * **[Core Services Reference](./references/core-services.md)**:
   * Resource Groups, Compute (Container Apps, AKS, App Service, Functions), Storage (Blobs, Files), Cosmos DB, PostgreSQL, VNets/NSGs.
 * **[IaC & Deployments Reference](./references/iac-deployments.md)**:
-  * Bicep compilation, ARM deployments, parameter files, `azd` (Azure Developer CLI) workflows.
+  * Bicep compilation, ARM deployments, and parameter files.
 * **[Observability & Diagnostics Reference](./references/observability-logs.md)**:
   * Log Analytics KQL queries, App Insights, Resource Health, metric definitions, and live log tailing (`webapp log tail`, `containerapp logs show`).
 * **[Security & IAM Reference](./references/security-iam.md)**:

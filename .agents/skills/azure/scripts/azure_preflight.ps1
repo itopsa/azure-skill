@@ -20,16 +20,7 @@ if ($azCmd) {
     exit 1
 }
 
-# 2. Check Azure Developer CLI (azd)
-$azdCmd = Get-Command azd -ErrorAction SilentlyContinue
-if ($azdCmd) {
-    $azdVer = (azd version 2>$null) -replace 'azd version\s*', ''
-    Write-Host " [OK] Azure Developer CLI (azd) is installed (version: $azdVer)" -ForegroundColor Green
-} else {
-    Write-Host " [INFO] azd not found (optional, install via 'winget install Microsoft.Azd' if needed)." -ForegroundColor Gray
-}
-
-# 3. Check Bicep
+# 2. Check Bicep
 $bicepCmd = Get-Command bicep -ErrorAction SilentlyContinue
 if ($bicepCmd) {
     $bicepVer = (bicep --version 2>$null)
@@ -43,7 +34,7 @@ if ($bicepCmd) {
     }
 }
 
-# 4. Check Azure DevOps Extension
+# 3. Check Azure DevOps Extension
 $extJson = az extension list --output json 2>$null | ConvertFrom-Json -ErrorAction SilentlyContinue
 $hasAdo = $extJson | Where-Object { $_.name -eq "azure-devops" }
 if ($hasAdo) {
@@ -55,7 +46,7 @@ if ($hasAdo) {
 Write-Host "------------------------------------------" -ForegroundColor Cyan
 Write-Host " Checking Azure Authentication Context..." -ForegroundColor Cyan
 
-# 5. Check active account & subscription
+# 4. Check active account & subscription
 $accountJson = az account show --output json 2>$null | ConvertFrom-Json -ErrorAction SilentlyContinue
 
 if (-not $accountJson) {

@@ -6,13 +6,13 @@ These instructions guide GitHub Copilot when assisting with Microsoft Azure arch
 
 ## 1. Core Principles & Tooling
 
-* **CLI & IaC First**: Always provide solutions using the **Azure CLI (`az`)**, **Azure Developer CLI (`azd`)**, **Bicep**, or the **Azure DevOps CLI extension (`az devops`)** rather than manual portal clicks.
+* **CLI & IaC First**: Always provide solutions using the **Azure CLI (`az`)**, **Bicep**, or the **Azure DevOps CLI extension (`az devops`)** rather than manual portal clicks.
 * **Cross-Platform Compatibility**: Provide commands that work on the user's OS:
   * On **Windows**: Support PowerShell syntax and backslashes where appropriate (e.g. `.\.agents\skills\azure\scripts\azure_preflight.ps1`).
   * On **macOS/Linux**: Support POSIX/Bash syntax (`./.agents/skills/azure/scripts/azure_preflight.sh`).
 * **Skill Runbooks**: Reference the domain recipes in `.agents/skills/azure/references/`:
   * [Core Services](../.agents/skills/azure/references/core-services.md) (Compute, Storage, DB, Network)
-  * [IaC & Deployments](../.agents/skills/azure/references/iac-deployments.md) (Bicep, ARM, `azd`)
+  * [IaC & Deployments](../.agents/skills/azure/references/iac-deployments.md) (Bicep, ARM)
   * [Observability & Logs](../.agents/skills/azure/references/observability-logs.md) (KQL, Log Analytics, Metrics)
   * [Security & IAM](../.agents/skills/azure/references/security-iam.md) (RBAC, Key Vault, Identities)
   * [Azure DevOps](../.agents/skills/azure/references/azure-devops.md) (ADO Repos, PRs, Pipelines, Boards)
@@ -26,7 +26,7 @@ These instructions guide GitHub Copilot when assisting with Microsoft Azure arch
   * Bash: `./.agents/skills/azure/scripts/azure_preflight.sh`
   * Inline: `az account show -o table`
 * **Dry Runs for Infrastructure**: Always use `az deployment group what-if` before applying Bicep or ARM templates.
-* **Destructive Command Warnings**: Warn before executing any deletion or purge command (`az group delete`, `az resource delete`, `azd down --purge`, `az keyvault purge`).
+* **Destructive Command Warnings**: Warn before executing any deletion or purge command (`az group delete`, `az resource delete`, `az keyvault purge`).
 
 ---
 

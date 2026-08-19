@@ -16,15 +16,7 @@ else
     exit 1
 fi
 
-# 2. Check Azure Developer CLI (azd)
-if command -v azd >/dev/null 2>&1; then
-    AZD_VERSION=$(azd version 2>/dev/null | awk '{print $3}' || echo "detected")
-    echo " [OK] Azure Developer CLI (azd) is installed (version: ${AZD_VERSION})"
-else
-    echo " [INFO] azd not found (optional, used for azd templates/deployments)."
-fi
-
-# 3. Check Bicep
+# 2. Check Bicep
 if command -v bicep >/dev/null 2>&1; then
     BICEP_VERSION=$(bicep --version 2>/dev/null | awk '{print $4}' || echo "detected")
     echo " [OK] Bicep CLI is installed (version: ${BICEP_VERSION})"
@@ -34,7 +26,7 @@ else
     echo " [INFO] Bicep CLI not found (install with 'az bicep install' if needed)."
 fi
 
-# 4. Check Azure DevOps Extension
+# 3. Check Azure DevOps Extension
 if az extension list --output json 2>/dev/null | grep -q '"name": "azure-devops"'; then
     echo " [OK] Azure DevOps extension ('azure-devops') is installed."
 else
@@ -44,7 +36,7 @@ fi
 echo "------------------------------------------"
 echo " Checking Azure Authentication Context..."
 
-# 5. Check active account & subscription
+# 4. Check active account & subscription
 ACCOUNT_INFO=$(az account show --output json 2>/dev/null || true)
 
 if [ -z "$ACCOUNT_INFO" ] || [ "$ACCOUNT_INFO" = "{}" ]; then

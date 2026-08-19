@@ -1,6 +1,6 @@
 # Azure IaC & Deployments Reference
 
-This reference covers deploying and validating Infrastructure as Code using Bicep, ARM, and `azd` (Azure Developer CLI).
+This reference covers deploying and validating Infrastructure as Code using Bicep, ARM, and Azure CLI.
 
 ---
 
@@ -58,31 +58,4 @@ az deployment sub create \
   --parameters location=eastus
 ```
 
----
-
-## 3. Azure Developer CLI (`azd`)
-
-`azd` manages end-to-end cloud application lifecycles based on `azure.yaml`:
-
-```bash
-# Initialize a new azd project
-azd init
-
-# Authenticate azd session
-azd auth login
-
-# Check provisioning/deployment status
-azd show
-
-# Provision infrastructure (runs Bicep/Terraform)
-azd provision
-
-# Deploy application code
-azd deploy
-
-# End-to-end package, provision, and deploy
-azd up
-
-# Teardown / destroy resources created by azd
-azd down --purge
-```
+Use a unique deployment name for each release so its deployment history remains auditable.
