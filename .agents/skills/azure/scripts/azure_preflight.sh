@@ -34,10 +34,17 @@ else
     echo " [INFO] Bicep CLI not found (install with 'az bicep install' if needed)."
 fi
 
+# 4. Check Azure DevOps Extension
+if az extension list --output json 2>/dev/null | grep -q '"name": "azure-devops"'; then
+    echo " [OK] Azure DevOps extension ('azure-devops') is installed."
+else
+    echo " [INFO] Azure DevOps extension not installed (install with 'az extension add --name azure-devops' if needed)."
+fi
+
 echo "------------------------------------------"
 echo " Checking Azure Authentication Context..."
 
-# 4. Check active account & subscription
+# 5. Check active account & subscription
 ACCOUNT_INFO=$(az account show --output json 2>/dev/null || true)
 
 if [ -z "$ACCOUNT_INFO" ] || [ "$ACCOUNT_INFO" = "{}" ]; then

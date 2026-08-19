@@ -1,0 +1,41 @@
+# GitHub Copilot Instructions — Azure Cloud & Azure DevOps
+
+These instructions guide GitHub Copilot when assisting with Microsoft Azure architecture, Infrastructure as Code (Bicep/ARM), CLI scripting, operations, troubleshooting, and Azure DevOps (ADO) in this repository.
+
+---
+
+## 1. Core Principles & Tooling
+
+* **CLI & IaC First**: Always provide solutions using the **Azure CLI (`az`)**, **Azure Developer CLI (`azd`)**, **Bicep**, or the **Azure DevOps CLI extension (`az devops`)** rather than manual portal clicks.
+* **Token Efficiency & Progressive Detail**: Provide direct, executable commands and scripts without unnecessary fluff.
+* **Skill Runbooks**: Reference the domain recipes in `.agents/skills/azure/references/`:
+  * [Core Services](file:///.agents/skills/azure/references/core-services.md) (Compute, Storage, DB, Network)
+  * [IaC & Deployments](file:///.agents/skills/azure/references/iac-deployments.md) (Bicep, ARM, `azd`)
+  * [Observability & Logs](file:///.agents/skills/azure/references/observability-logs.md) (KQL, Log Analytics, Metrics)
+  * [Security & IAM](file:///.agents/skills/azure/references/security-iam.md) (RBAC, Key Vault, Identities)
+  * [Azure DevOps](file:///.agents/skills/azure/references/azure-devops.md) (ADO Repos, PRs, Pipelines, Boards)
+
+---
+
+## 2. Safety & Operational Guardrails
+
+* **Pre-Flight Validation**: Always verify active subscription and tenant context (`az account show -o table` or `./.agents/skills/azure/scripts/azure_preflight.sh`).
+* **Dry Runs for Infrastructure**: Always use `az deployment group what-if` before applying Bicep or ARM templates.
+* **Destructive Command Warnings**: Warn before executing any deletion or purge command (`az group delete`, `az resource delete`, `azd down --purge`, `az keyvault purge`).
+
+---
+
+## 3. CLI Output & Query Standards
+
+* **Human Display**: Use `--output table` (`-o table`) for listings and status summaries.
+* **Script / Programmatic Parsing**: Use `--output json` when JSON payload manipulation is required.
+* **Scalar Values**: Use `--output tsv` (`-o tsv`) with `--query` for single values (IDs, connection strings, keys).
+* **JMESPath Filtering**: Use native `--query` filters instead of piping to grep/awk.
+
+---
+
+## 4. Azure DevOps CLI Patterns
+
+* **Pipelines**: `az pipelines run --name "<Pipeline-Name>" --branch main`
+* **Pull Requests**: `az repos pr list -o table` or `az repos pr create --target-branch main --open`
+* **Work Items**: `az boards query --wiql "..."`

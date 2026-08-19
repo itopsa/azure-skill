@@ -1,12 +1,12 @@
 ---
 name: azure
 description: >-
-  Manage, provision, inspect, deploy, and troubleshoot Microsoft Azure cloud resources using the Azure CLI (az), Azure Developer CLI (azd), Bicep, and Azure REST APIs without requiring an external MCP server. Activate this skill whenever interacting with Azure subscriptions, resource groups, App Services, Container Apps, AKS, Functions, Storage, Cosmos DB, Key Vault, Monitor/Logs, or IAM/RBAC.
+  Manage, provision, inspect, deploy, and troubleshoot Microsoft Azure cloud resources and Azure DevOps (ADO) using the Azure CLI (az), Azure Developer CLI (azd), Bicep, and Azure REST APIs without requiring an external MCP server. Activate this skill whenever interacting with Azure subscriptions, resource groups, App Services, Container Apps, AKS, Functions, Storage, Cosmos DB, Key Vault, Monitor/Logs, IAM/RBAC, or Azure DevOps pipelines/repos.
 ---
 
 # Azure Cloud Operations & Management Skill
 
-This skill provides direct, token-efficient, and deterministic management of Microsoft Azure infrastructure and workloads using native command-line tools (`az`, `azd`, `bicep`).
+This skill provides direct, token-efficient, and deterministic management of Microsoft Azure infrastructure, workloads, and Azure DevOps (ADO) using native command-line tools (`az`, `azd`, `bicep`, `az devops`).
 
 ---
 
@@ -99,6 +99,8 @@ For specific CLI commands, syntax recipes, and workflows by service category, co
   * Log Analytics KQL queries, App Insights, Resource Health, metric definitions, and live log tailing (`webapp log tail`, `containerapp logs show`).
 * **[Security & IAM Reference](./references/security-iam.md)**:
   * RBAC role assignments, System/User Managed Identities, Azure Key Vault secrets, Microsoft Entra ID lookups.
+* **[Azure DevOps (ADO) Reference](./references/azure-devops.md)**:
+  * Azure Repos, Pull Requests, Azure Pipelines CI/CD triggers, and Azure Boards work items via `az devops`.
 
 ---
 
@@ -114,3 +116,5 @@ For specific CLI commands, syntax recipes, and workflows by service category, co
 | **Run KQL Log Query** | `az monitor log-analytics query -w <workspace-id> -q "<kql-query>" -o table` |
 | **Get Key Vault Secret** | `az keyvault secret show --vault-name <vault> -n <secret> --query value -o tsv` |
 | **List Role Assignments** | `az role assignment list -g <rg-name> -o table` |
+| **Run ADO Pipeline** | `az pipelines run --name "<pipeline-name>" --branch main` |
+| **List ADO Pull Requests** | `az repos pr list -o table` |
