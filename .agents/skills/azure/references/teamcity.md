@@ -1,12 +1,14 @@
-# JetBrains TeamCity CLI & REST API Reference
+# JetBrains TeamCity REST API Reference
 
-This reference covers managing and automating JetBrains TeamCity builds, pipelines, logs, and artifacts using PowerShell, Bash (`curl`), and the TeamCity REST API.
+This reference covers managing and automating JetBrains TeamCity builds, pipelines, logs, and artifacts through the TeamCity REST API with PowerShell or Bash (`curl`).
 
 ---
 
 ## 1. Authentication & Environment Setup
 
 Create a **Personal Access Token (PAT)** in TeamCity (*Profile -> Access Tokens*).
+
+Never provide a token in chat, source control, or command output. Set it directly in the terminal session or retrieve it from an approved secret store.
 
 ### PowerShell (Windows)
 ```powershell
@@ -19,6 +21,12 @@ $HEADERS = @{
 }
 ```
 
+### Verify the Connection
+```powershell
+$server = Invoke-RestMethod -Uri "$env:TEAMCITY_SERVER/app/rest/server" -Headers $HEADERS
+$server | Select-Object version, buildNumber, startTime | Format-List
+```
+
 ### Bash / Linux / macOS
 ```bash
 export TEAMCITY_SERVER="https://teamcity.yourcompany.com"
@@ -27,7 +35,45 @@ export TEAMCITY_TOKEN="<YOUR_PERSONAL_ACCESS_TOKEN>"
 
 ---
 
-## 2. Triggering Builds
+## 2. Listing and Filtering Build Configurations
+
+### List All Accessible Jobs
+TeamCity paginates large inventories. Follow `nextHref` until all pages have been read:
+
+```powershell
+$fields = 'nextHref,buildType(id,name,paused,project(id,name))'
+$path = '/app/rest/buildTypes?locator=count:1000&fields=' + [uri]::EscapeDataString($fields)
+$jobs = @()
+
+do {
+    $response = Invoke-RestMethod -Uri "$env:TEAMCITY_SERVER$path" -Headers $HEADERS
+    $jobs += @($response.buildType)
+    $path = $response.nextHref
+} while (-not [string]::IsNullOrEmpty($path))
+
+$jobs |
+    Sort-Object { $_.project.name }, name |
+    Select-Object @{Name='Project'; Expression = { $_.project.name }}, name, id, paused |
+    Format-Table -AutoSize
+```
+
+### Filter Jobs by Project or Job Name
+After retrieving the inventory, filter by project name, project ID, or job name:
+
+```powershell
+$jobs |
+    Where-Object {
+        $_.project.name -like '*AppSettingsDemo*' -or
+        $_.project.id -like '*AppSettingsDemo*' -or
+        $_.name -like '*deploy*'
+    } |
+    Select-Object @{Name='Project'; Expression = { $_.project.name }}, name, id, paused |
+    Format-Table -AutoSize
+```
+
+---
+
+## 3. Triggering Builds
 
 ### Trigger Build via PowerShell
 ```powershell
@@ -65,7 +111,7 @@ curl -s -X POST "$TEAMCITY_SERVER/app/rest/buildQueue" \
 
 ---
 
-## 3. Inspecting Build Status & Logs
+## 4. Inspecting Build Status & Logs
 
 ### Check Build Status (Running, Success, Failure)
 ```powershell
@@ -97,7 +143,7 @@ curl -s -H "Authorization: Bearer $TEAMCITY_TOKEN" \
 
 ---
 
-## 4. Canceling / Stopping a Running Build
+## 5. Canceling / Stopping a Running Build
 
 ```powershell
 $cancelBody = @{
@@ -114,7 +160,7 @@ Invoke-RestMethod -Uri "$env:TEAMCITY_SERVER/app/rest/builds/id:12345" `
 
 ---
 
-## 5. Artifact Management
+## 6. Artifact Management
 
 ### List Artifacts for a Build
 ```powershell
@@ -128,26 +174,6 @@ $artifacts.file | Format-Table name, size, modificationTime
 Invoke-WebRequest -Uri "$env:TEAMCITY_SERVER/app/rest/builds/id:12345/artifacts/content/build-output.zip" `
     -Headers $HEADERS `
     -OutFile "build-output.zip"
-```
-
----
-
-## 6. Standalone CLI: `tccli`
-
-If a dedicated CLI tool is preferred:
-
-```bash
-# Install tccli via Python
-pip install tccli
-
-# Configure host and token
-tccli configure --host https://teamcity.yourcompany.com --token <YOUR_TOKEN>
-
-# Run a build
-tccli build run --build-type <BuildTypeId> --branch main
-
-# Check status
-tccli build status <BuildId>
 ```
 
 ---
