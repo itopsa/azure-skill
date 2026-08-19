@@ -1,11 +1,12 @@
+---
 name: azure
 description: >-
-  Manage, provision, inspect, deploy, and troubleshoot Microsoft Azure cloud resources and Azure DevOps (ADO) using the Azure CLI (az), Bicep, and Azure REST APIs without requiring an external MCP server. Activate this skill whenever interacting with Azure subscriptions, resource groups, App Services, Container Apps, AKS, Functions, Storage, Cosmos DB, Key Vault, Monitor/Logs, IAM/RBAC, or Azure DevOps pipelines/repos.
+  Manage, provision, inspect, deploy, and troubleshoot Microsoft Azure cloud resources, Azure DevOps (ADO), and JetBrains TeamCity pipelines using the Azure CLI (az), Bicep, Azure REST APIs, and TeamCity REST/CLI without requiring an external MCP server. Activate this skill whenever interacting with Azure subscriptions, resource groups, App Services, Container Apps, AKS, Functions, Storage, Cosmos DB, Key Vault, Monitor/Logs, IAM/RBAC, Azure DevOps, or TeamCity build jobs.
 ---
 
 # Azure Cloud Operations & Management Skill
 
-This skill provides direct, token-efficient, and deterministic management of Microsoft Azure infrastructure, workloads, and Azure DevOps (ADO) using native command-line tools (`az`, `bicep`, `az devops`) across Windows, macOS, and Linux.
+This skill provides direct, token-efficient, and deterministic management of Microsoft Azure infrastructure, workloads, Azure DevOps (ADO), and JetBrains TeamCity using native command-line tools (`az`, `bicep`, `az devops`, TeamCity REST/CLI) across Windows, macOS, and Linux.
 
 ---
 
@@ -104,6 +105,8 @@ For specific CLI commands, syntax recipes, and workflows by service category, co
   * RBAC role assignments, System/User Managed Identities, Azure Key Vault secrets, Microsoft Entra ID lookups.
 * **[Azure DevOps (ADO) Reference](./references/azure-devops.md)**:
   * Azure Repos, Pull Requests, Azure Pipelines CI/CD triggers, and Azure Boards work items via `az devops`.
+* **[TeamCity Reference](./references/teamcity.md)**:
+  * Triggering builds with parameters, querying build status and logs, artifact downloads, and service messages via PowerShell/REST.
 
 ---
 
@@ -121,3 +124,4 @@ For specific CLI commands, syntax recipes, and workflows by service category, co
 | **List Role Assignments** | `az role assignment list -g <rg-name> -o table` |
 | **Run ADO Pipeline** | `az pipelines run --name "<pipeline-name>" --branch main` |
 | **List ADO Pull Requests** | `az repos pr list -o table` |
+| **Trigger TeamCity Build** | `Invoke-RestMethod "$env:TEAMCITY_SERVER/app/rest/buildQueue" -Method Post -Headers $HEADERS -Body $body` |

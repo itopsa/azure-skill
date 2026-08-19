@@ -1,12 +1,12 @@
-# GitHub Copilot Instructions — Azure Cloud & Azure DevOps
+# GitHub Copilot Instructions — Azure Cloud & CI/CD (ADO & TeamCity)
 
-These instructions guide GitHub Copilot when assisting with Microsoft Azure architecture, Infrastructure as Code (Bicep/ARM), CLI scripting, operations, troubleshooting, and Azure DevOps (ADO) across Windows (PowerShell/CMD), macOS, and Linux.
+These instructions guide GitHub Copilot when assisting with Microsoft Azure architecture, Infrastructure as Code (Bicep/ARM), CLI scripting, operations, troubleshooting, Azure DevOps (ADO), and JetBrains TeamCity across Windows (PowerShell/CMD), macOS, and Linux.
 
 ---
 
 ## 1. Core Principles & Tooling
 
-* **CLI & IaC First**: Always provide solutions using the **Azure CLI (`az`)**, **Bicep**, or the **Azure DevOps CLI extension (`az devops`)** rather than manual portal clicks.
+* **CLI & IaC First**: Always provide solutions using the **Azure CLI (`az`)**, **Bicep**, the **Azure DevOps CLI extension (`az devops`)**, or the **TeamCity REST API/CLI** rather than manual portal clicks.
 * **Cross-Platform Compatibility**: Provide commands that work on the user's OS:
   * On **Windows**: Support PowerShell syntax and backslashes where appropriate (e.g. `.\.agents\skills\azure\scripts\azure_preflight.ps1`).
   * On **macOS/Linux**: Support POSIX/Bash syntax (`./.agents/skills/azure/scripts/azure_preflight.sh`).
@@ -16,6 +16,7 @@ These instructions guide GitHub Copilot when assisting with Microsoft Azure arch
   * [Observability & Logs](../.agents/skills/azure/references/observability-logs.md) (KQL, Log Analytics, Metrics)
   * [Security & IAM](../.agents/skills/azure/references/security-iam.md) (RBAC, Key Vault, Identities)
   * [Azure DevOps](../.agents/skills/azure/references/azure-devops.md) (ADO Repos, PRs, Pipelines, Boards)
+  * [TeamCity](../.agents/skills/azure/references/teamcity.md) (TeamCity REST API, build triggers, artifact downloads)
 
 ---
 
@@ -39,8 +40,8 @@ These instructions guide GitHub Copilot when assisting with Microsoft Azure arch
 
 ---
 
-## 4. Azure DevOps CLI Patterns
+## 4. CI/CD Patterns (ADO & TeamCity)
 
-* **Pipelines**: `az pipelines run --name "<Pipeline-Name>" --branch main`
-* **Pull Requests**: `az repos pr list -o table` or `az repos pr create --target-branch main --open`
-* **Work Items**: `az boards query --wiql "..."`
+* **ADO Pipelines**: `az pipelines run --name "<Pipeline-Name>" --branch main`
+* **ADO Pull Requests**: `az repos pr list -o table` or `az repos pr create --target-branch main --open`
+* **TeamCity Trigger**: Use PowerShell `Invoke-RestMethod` against `$env:TEAMCITY_SERVER/app/rest/buildQueue` with Bearer auth.
