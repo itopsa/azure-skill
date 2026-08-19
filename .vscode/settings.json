@@ -1,0 +1,5 @@
+{
+  "github.copilot.chat.customInstructions": {
+    "always": "Follow repository Azure guidelines in .github/copilot-instructions.md and .agents/skills/azure/SKILL.md. Prefer Azure CLI (az) / Bicep over portal instructions. Include pre-flight checks and -o table/-o json formatting."
+  }
+}
