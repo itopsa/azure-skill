@@ -6,7 +6,7 @@ description: >-
 
 # Azure Cloud Operations & Management Skill
 
-This skill provides direct, token-efficient, and deterministic management of Microsoft Azure infrastructure, workloads, and Azure DevOps (ADO) using native command-line tools (`az`, `azd`, `bicep`, `az devops`).
+This skill provides direct, token-efficient, and deterministic management of Microsoft Azure infrastructure, workloads, and Azure DevOps (ADO) using native command-line tools (`az`, `azd`, `bicep`, `az devops`) across Windows, macOS, and Linux.
 
 ---
 
@@ -15,14 +15,18 @@ This skill provides direct, token-efficient, and deterministic management of Mic
 Before performing mutations or queries, always confirm environment readiness and active subscription context:
 
 1. **Run Pre-Flight Check**:
-   Execute the pre-flight verification script:
-   ```bash
-   ./.agents/skills/azure/scripts/azure_preflight.sh
-   ```
-   Or run the quick inline check:
-   ```bash
-   az account show --output table
-   ```
+   * **Windows (PowerShell)**:
+     ```powershell
+     .\.agents\skills\azure\scripts\azure_preflight.ps1
+     ```
+   * **macOS / Linux / Git Bash**:
+     ```bash
+     ./.agents/skills/azure/scripts/azure_preflight.sh
+     ```
+   * Or run the quick inline check:
+     ```bash
+     az account show --output table
+     ```
 
 2. **Switch / Select Target Subscription**:
    If the target subscription differs from the active default:

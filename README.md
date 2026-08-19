@@ -1,6 +1,6 @@
 # Azure Skill for AI Agents & GitHub Copilot
 
-A token-efficient, CLI-driven, and progressive-disclosure Azure management skill for AI coding assistants (Antigravity, Gemini CLI, Claude, and GitHub Copilot) with full support for GitHub and Azure DevOps (ADO) repositories.
+A token-efficient, CLI-driven, and progressive-disclosure Azure management skill for AI coding assistants (Antigravity, Gemini CLI, Claude, and GitHub Copilot) with full cross-platform support for Windows (PowerShell), macOS, Linux, and Azure DevOps (ADO) repositories.
 
 ---
 
@@ -9,9 +9,10 @@ A token-efficient, CLI-driven, and progressive-disclosure Azure management skill
 Instead of loading heavy, token-expensive MCP servers (like Azure Resource Manager with 50+ tool schemas), this repository provides:
 
 1. **Native CLI & IaC Direct Execution:** Uses the Azure CLI (`az`), Azure Developer CLI (`azd`), Bicep, and Azure DevOps CLI (`az devops`) directly for deterministic operations.
-2. **Progressive Disclosure:** Only loads documentation and domain runbooks on-demand when relevant to the task.
-3. **Safety & Guardrails:** Pre-flight checks (`az account show`), subscription validation, and mandatory dry-runs (`--what-if`) before applying infrastructure changes.
-4. **Universal Compatibility:** Works seamlessly in **GitHub** and **Azure DevOps** repositories with **Antigravity / Gemini Agents** and **GitHub Copilot**.
+2. **Cross-Platform Ready:** Native **PowerShell** (`.ps1`) scripts for Windows environments alongside **Bash** (`.sh`) for macOS/Linux/WSL.
+3. **Progressive Disclosure:** Only loads documentation and domain runbooks on-demand when relevant to the task.
+4. **Safety & Guardrails:** Pre-flight checks (`az account show`), subscription validation, and mandatory dry-runs (`--what-if`) before applying infrastructure changes.
+5. **Universal Compatibility:** Works seamlessly in **GitHub** and **Azure DevOps** repositories with **Antigravity / Gemini Agents** and **GitHub Copilot**.
 
 ---
 
@@ -23,7 +24,8 @@ Instead of loading heavy, token-expensive MCP servers (like Azure Resource Manag
 │       └── azure/
 │           ├── SKILL.md                 # Antigravity/Gemini Agent Skill Definition
 │           ├── scripts/
-│           │   └── azure_preflight.sh   # Environment, CLI, ADO & auth validation script
+│           │   ├── azure_preflight.ps1  # Windows PowerShell preflight validation
+│           │   └── azure_preflight.sh   # macOS / Linux / Git Bash preflight validation
 │           └── references/
 │               ├── core-services.md     # Compute, Storage, DB, Network recipes
 │               ├── iac-deployments.md   # Bicep, ARM what-if, and azd workflows
@@ -58,9 +60,14 @@ Drop the `.agents/skills/azure` directory into your project root or install glob
 
 To verify your local Azure setup, CLI installation, ADO extension, and authenticated tenant/subscription:
 
-```bash
-./.agents/skills/azure/scripts/azure_preflight.sh
-```
+* **On Windows (PowerShell):**
+  ```powershell
+  .\.agents\skills\azure\scripts\azure_preflight.ps1
+  ```
+* **On macOS / Linux / Git Bash:**
+  ```bash
+  ./.agents/skills/azure/scripts/azure_preflight.sh
+  ```
 
 ---
 

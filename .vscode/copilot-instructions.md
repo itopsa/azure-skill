@@ -1,13 +1,13 @@
 # GitHub Copilot Instructions — Azure Cloud & Azure DevOps
 
-These instructions guide GitHub Copilot when assisting with Microsoft Azure architecture, Infrastructure as Code (Bicep/ARM), CLI scripting, operations, troubleshooting, and Azure DevOps (ADO) in this repository.
+These instructions guide GitHub Copilot when assisting with Microsoft Azure architecture, Infrastructure as Code (Bicep/ARM), CLI scripting, operations, troubleshooting, and Azure DevOps (ADO) across Windows (PowerShell/CMD), macOS, and Linux.
 
 ---
 
 ## 1. Core Principles & Tooling
 
 * **CLI & IaC First**: Always provide solutions using the **Azure CLI (`az`)**, **Azure Developer CLI (`azd`)**, **Bicep**, or the **Azure DevOps CLI extension (`az devops`)** rather than manual portal clicks.
-* **Token Efficiency & Progressive Detail**: Provide direct, executable commands and scripts without unnecessary fluff.
+* **Cross-Platform Compatibility**: Support PowerShell syntax on Windows (`.\.agents\skills\azure\scripts\azure_preflight.ps1`) and Bash on macOS/Linux.
 * **Skill Runbooks**: Reference the domain recipes in `.agents/skills/azure/references/`:
   * [Core Services](file:///.agents/skills/azure/references/core-services.md) (Compute, Storage, DB, Network)
   * [IaC & Deployments](file:///.agents/skills/azure/references/iac-deployments.md) (Bicep, ARM, `azd`)
@@ -19,7 +19,10 @@ These instructions guide GitHub Copilot when assisting with Microsoft Azure arch
 
 ## 2. Safety & Operational Guardrails
 
-* **Pre-Flight Validation**: Always verify active subscription and tenant context (`az account show -o table` or `./.agents/skills/azure/scripts/azure_preflight.sh`).
+* **Pre-Flight Validation**: Always verify active subscription and tenant context:
+  * PowerShell: `.\.agents\skills\azure\scripts\azure_preflight.ps1`
+  * Bash: `./.agents/skills/azure/scripts/azure_preflight.sh`
+  * Inline: `az account show -o table`
 * **Dry Runs for Infrastructure**: Always use `az deployment group what-if` before applying Bicep or ARM templates.
 * **Destructive Command Warnings**: Warn before executing any deletion or purge command (`az group delete`, `az resource delete`, `azd down --purge`, `az keyvault purge`).
 
