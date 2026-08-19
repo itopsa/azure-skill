@@ -1,12 +1,12 @@
 ---
 name: azure
 description: >-
-  Manage, provision, inspect, deploy, and troubleshoot Microsoft Azure cloud resources, Azure DevOps (ADO), and JetBrains TeamCity pipelines using the Azure CLI (az), Bicep, Azure REST APIs, and TeamCity REST API without requiring an external MCP server. Activate this skill whenever interacting with Azure subscriptions, resource groups, App Services, Container Apps, AKS, Functions, Storage, Cosmos DB, Key Vault, Monitor/Logs, IAM/RBAC, Azure DevOps, or TeamCity build jobs.
+  Manage, provision, inspect, deploy, and troubleshoot Microsoft Azure cloud resources, Azure DevOps (ADO), and JetBrains TeamCity pipelines using the Azure CLI (az), Bicep, Azure REST APIs, and the TeamCity REST API or tccli when available, without requiring an external MCP server. Activate this skill whenever interacting with Azure subscriptions, resource groups, App Services, Container Apps, AKS, Functions, Storage, Cosmos DB, Key Vault, Monitor/Logs, IAM/RBAC, Azure DevOps, or TeamCity build jobs.
 ---
 
 # Azure Cloud Operations & Management Skill
 
-This skill provides direct, token-efficient, and deterministic management of Microsoft Azure infrastructure, workloads, Azure DevOps (ADO), and JetBrains TeamCity using native command-line tools (`az`, `bicep`, `az devops`, TeamCity REST API) across Windows, macOS, and Linux.
+This skill provides direct, token-efficient, and deterministic management of Microsoft Azure infrastructure, workloads, Azure DevOps (ADO), and JetBrains TeamCity using native command-line tools (`az`, `bicep`, `az devops`, TeamCity REST API, and optional `tccli`) across Windows, macOS, and Linux.
 
 ---
 
@@ -106,7 +106,7 @@ For specific CLI commands, syntax recipes, and workflows by service category, co
 * **[Azure DevOps (ADO) Reference](./references/azure-devops.md)**:
   * Azure Repos, Pull Requests, Azure Pipelines CI/CD triggers, and Azure Boards work items via `az devops`.
 * **[TeamCity Reference](./references/teamcity.md)**:
-  * Verifying REST access, listing and filtering build configurations, triggering builds with parameters, querying build status and logs, artifact downloads, and service messages.
+  * Verifying REST access, listing and filtering build configurations, triggering builds with parameters, querying build status and logs, artifact downloads, service messages, and optional tccli commands.
 
 ---
 

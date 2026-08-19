@@ -1,6 +1,6 @@
-# JetBrains TeamCity REST API Reference
+# JetBrains TeamCity CLI & REST API Reference
 
-This reference covers managing and automating JetBrains TeamCity builds, pipelines, logs, and artifacts through the TeamCity REST API with PowerShell or Bash (`curl`).
+This reference covers managing and automating JetBrains TeamCity builds, pipelines, logs, and artifacts through the TeamCity REST API with PowerShell or Bash (`curl`), or `tccli` when its installed version supports the needed command.
 
 ---
 
@@ -73,7 +73,29 @@ $jobs |
 
 ---
 
-## 3. Triggering Builds
+## 3. Optional TeamCity CLI (`tccli`)
+
+Use `tccli` as a convenience layer only after confirming that the installed version exposes the commands required for the task. CLI command availability varies by version; use the REST API sections as the portable fallback.
+
+```powershell
+tccli --help
+tccli build --help
+```
+
+When supported by the installed version, configure a profile and use it to query or run builds:
+
+```bash
+tccli configure --host https://teamcity.yourcompany.com --token <YOUR_TOKEN>
+tccli build list
+tccli build status <BuildId>
+tccli build run --build-type <BuildTypeId> --branch main
+```
+
+Never paste a token into chat, source control, or build logs. Prefer a terminal prompt or an approved secret store when configuring the CLI.
+
+---
+
+## 4. Triggering Builds
 
 ### Trigger Build via PowerShell
 ```powershell
@@ -111,7 +133,7 @@ curl -s -X POST "$TEAMCITY_SERVER/app/rest/buildQueue" \
 
 ---
 
-## 4. Inspecting Build Status & Logs
+## 5. Inspecting Build Status & Logs
 
 ### Check Build Status (Running, Success, Failure)
 ```powershell
@@ -143,7 +165,7 @@ curl -s -H "Authorization: Bearer $TEAMCITY_TOKEN" \
 
 ---
 
-## 5. Canceling / Stopping a Running Build
+## 6. Canceling / Stopping a Running Build
 
 ```powershell
 $cancelBody = @{
@@ -160,7 +182,7 @@ Invoke-RestMethod -Uri "$env:TEAMCITY_SERVER/app/rest/builds/id:12345" `
 
 ---
 
-## 6. Artifact Management
+## 7. Artifact Management
 
 ### List Artifacts for a Build
 ```powershell
@@ -178,7 +200,7 @@ Invoke-WebRequest -Uri "$env:TEAMCITY_SERVER/app/rest/builds/id:12345/artifacts/
 
 ---
 
-## 7. Useful TeamCity Service Messages (for Build Scripts)
+## 8. Useful TeamCity Service Messages (for Build Scripts)
 
 When authoring build scripts (PowerShell / Bash) that run inside TeamCity agents:
 
