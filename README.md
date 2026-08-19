@@ -6,12 +6,12 @@ A token-efficient, CLI-driven, and progressive-disclosure Azure management skill
 
 ## Quick Links
 
-* 📘 **[Azure DevOps (ADO) Import & Setup Guide](./ADO_SETUP_GUIDE.md)** — Step-by-step instructions for importing this skill into a new ADO repository on Windows.
-* 🛠️ **[Core Services Reference](./.agents/skills/azure/references/core-services.md)** — Compute, Storage, DB, and Network recipes.
-* 🚀 **[IaC & Deployments](./.agents/skills/azure/references/iac-deployments.md)** — Bicep dry-runs (`what-if`) and `azd` workflows.
-* 📊 **[Observability & Logs](./.agents/skills/azure/references/observability-logs.md)** — KQL queries, Log Analytics & App Insights.
-* 🔐 **[Security & IAM](./.agents/skills/azure/references/security-iam.md)** — RBAC, Managed Identities & Key Vault.
-* 🔄 **[Azure DevOps CLI](./.agents/skills/azure/references/azure-devops.md)** — Pipelines, Repos, PRs & Boards.
+* **[Azure DevOps (ADO) Import & Setup Guide](./ADO_SETUP_GUIDE.md)** — Step-by-step instructions for importing this skill into a new ADO repository on Windows.
+* **[Core Services Reference](./.agents/skills/azure/references/core-services.md)** — Compute, Storage, DB, and Network recipes.
+* **[IaC & Deployments](./.agents/skills/azure/references/iac-deployments.md)** — Bicep dry-runs (`what-if`) and `azd` workflows.
+* **[Observability & Logs](./.agents/skills/azure/references/observability-logs.md)** — KQL queries, Log Analytics & App Insights.
+* **[Security & IAM](./.agents/skills/azure/references/security-iam.md)** — RBAC, Managed Identities & Key Vault.
+* **[Azure DevOps CLI](./.agents/skills/azure/references/azure-devops.md)** — Pipelines, Repos, PRs & Boards.
 
 ---
 
