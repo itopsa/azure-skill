@@ -4,6 +4,17 @@ A token-efficient, CLI-driven, and progressive-disclosure Azure management skill
 
 ---
 
+## Quick Links
+
+* 📘 **[Azure DevOps (ADO) Import & Setup Guide](./ADO_SETUP_GUIDE.md)** — Step-by-step instructions for importing this skill into a new ADO repository on Windows.
+* 🛠️ **[Core Services Reference](./.agents/skills/azure/references/core-services.md)** — Compute, Storage, DB, and Network recipes.
+* 🚀 **[IaC & Deployments](./.agents/skills/azure/references/iac-deployments.md)** — Bicep dry-runs (`what-if`) and `azd` workflows.
+* 📊 **[Observability & Logs](./.agents/skills/azure/references/observability-logs.md)** — KQL queries, Log Analytics & App Insights.
+* 🔐 **[Security & IAM](./.agents/skills/azure/references/security-iam.md)** — RBAC, Managed Identities & Key Vault.
+* 🔄 **[Azure DevOps CLI](./.agents/skills/azure/references/azure-devops.md)** — Pipelines, Repos, PRs & Boards.
+
+---
+
 ## Overview
 
 Instead of loading heavy, token-expensive MCP servers (like Azure Resource Manager with 50+ tool schemas), this repository provides:
@@ -39,6 +50,7 @@ Instead of loading heavy, token-expensive MCP servers (like Azure Resource Manag
 ├── .vscode/
 │   ├── copilot-instructions.md          # Copilot guidelines (Azure DevOps / local standard)
 │   └── settings.json                    # Workspace settings for Copilot Chat
+├── ADO_SETUP_GUIDE.md                   # Step-by-step setup guide for Azure DevOps repos
 └── README.md
 ```
 
@@ -46,10 +58,13 @@ Instead of loading heavy, token-expensive MCP servers (like Azure Resource Manag
 
 ## Usage
 
-### 1. With Antigravity / Gemini Agents
+### 1. In a New Azure DevOps (ADO) Repository
+See the complete **[Azure DevOps Setup Guide](./ADO_SETUP_GUIDE.md)** for one-liner PowerShell copy commands and team deployment steps.
+
+### 2. With Antigravity / Gemini Agents
 Drop the `.agents/skills/azure` directory into your project root or install globally in `~/.gemini/config/skills/azure`. The agent will automatically detect Azure tasks and activate the skill.
 
-### 2. With GitHub Copilot (GitHub or Azure DevOps Repos)
+### 3. With GitHub Copilot (GitHub or Azure DevOps Repos)
 * **Automatic:** Copilot in VS Code automatically reads `.vscode/copilot-instructions.md` and `.github/copilot-instructions.md` for all chats, inline edits, and PR reviews.
 * **On-Demand in Chat:** Mention specific runbooks using `@workspace #file:.agents/skills/azure/references/observability-logs.md` or `#file:.agents/skills/azure/references/azure-devops.md`.
 * **Prompt Template:** Use the Azure prompt template in `.github/prompts/azure-ops.prompt.md`.
